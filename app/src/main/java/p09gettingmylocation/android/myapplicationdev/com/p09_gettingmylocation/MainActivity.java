@@ -73,11 +73,11 @@ public class MainActivity extends AppCompatActivity implements
             @Override
             public void onClick(View v) {
 
-                File targetFile = new File(folderLocation, "data.txt");
+                File targetFile = new File(folderLocation, "new.txt");
 
                 try {
                     FileWriter writer = new FileWriter(targetFile, true);
-                    writer.write(mLocation.getLatitude() + "," + mLocation.getLongitude());
+                    writer.write(mLocation.getLatitude() + "," + mLocation.getLongitude() + "\n");
                     writer.flush();
                     writer.close();
                 } catch (Exception e) {
@@ -112,7 +112,6 @@ public class MainActivity extends AppCompatActivity implements
         btnStart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                onStart();
                 Intent i = new Intent(MainActivity.this, MyService.class);
                 startService(i);
                 Toast.makeText(MainActivity.this, "Service is running",
@@ -123,7 +122,6 @@ public class MainActivity extends AppCompatActivity implements
         btnStop.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                onStop();
                 Intent i = new Intent(MainActivity.this, MyService.class);
                 stopService(i);
                 Toast.makeText(MainActivity.this, "Service is stopped",
